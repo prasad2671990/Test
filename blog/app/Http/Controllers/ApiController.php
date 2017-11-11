@@ -18,15 +18,16 @@ public function display(){
 	}
 	
 	
-	public function fetch()
-{
-  $username = \Auth::user()->username;
+public function search(){
+	
+    $q = Input::get ( 'q' );
+    $display = Api::where('name','LIKE','%'.$q.'%')->get();
+    if(count($display) > 0)
+        return view('display')->withDetails($display)->withQuery ( $q );
+    else return view ('display')->withMessage('No Details found. Try to search again !');
 
-  $channels = Channel::where('channel', $username)->orderBy('created_at', 'desc')->take(3)->get();
-
-  // Return as json
-  return Response::json($channels);
 }
+
    
    
    public function saveApiData()

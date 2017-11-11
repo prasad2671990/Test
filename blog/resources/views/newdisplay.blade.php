@@ -52,7 +52,7 @@
  
             </tbody>
         </table>
-        {!! $details->render() !!}@endif
+        @endif
     </div>
 	</div>
     </body>
